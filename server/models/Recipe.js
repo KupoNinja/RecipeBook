@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 let Schema = mongoose.Schema;
 let ObjectId = Schema.Types.ObjectId;
 
-const RecipeSchema = new Schema(
+const Recipe = new Schema(
   {
     title: { type: String, maxlength: 50, trim: true, required: true },
     ingredients: { type: String, maxlength: 1000, trim: true, required: true },
