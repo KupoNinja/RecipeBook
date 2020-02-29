@@ -12,7 +12,11 @@ mongoose.connection.on("connection", () => {
 });
 
 export default class DbConnection {
-  static async connect(connectionstring = process.env.CONNECTION_STRING || "") {
+  static async connect(
+    connectionstring = process.env.CONNECTION_STRING +
+      process.env.DBNAME +
+      "?retryWrites=true&w=majority" || ""
+  ) {
     let status = 0;
     try {
       let status = await mongoose.connect(connectionstring);
