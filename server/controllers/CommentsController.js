@@ -11,13 +11,7 @@ export class CommentsController extends BaseController {
       .Router()
       .use(auth0Provider.isAuthorized)
       .post("", this.create);
-    //   .get("", this.getAll)
-    //   .get("/:id", this.getById)
-    //   .get("/:id/comments", this.getCommentsByRecipeId)
-    //   // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
-    //   .post("", this.create)
-    //   .put("/:id", this.update)
-    //   .delete("/:id", this.delete);
+    // TODO Need to make Roles in Auth0 so only the user who created can edit or delete.
   }
 
   async create(req, res, next) {
@@ -28,59 +22,4 @@ export class CommentsController extends BaseController {
       next(error);
     }
   }
-
-  //   async getAll(req, res, next) {
-  //     try {
-  //       let recipes = await recipeService.getAll(req.query);
-  //       return res.send(recipes);
-  //     } catch (error) {
-  //       next(error);
-  //     }
-  //   }
-
-  //   async getById(req, res, next) {
-  //     try {
-  //       let recipe = await recipeService.getById(req.params.id);
-  //       return res.send(recipe);
-  //     } catch (error) {
-  //       next(error);
-  //     }
-  //   }
-
-  //   getCommentsByRecipeId(req, res, next) {
-  //     try {
-  //       let comments = await;
-  //     } catch (error) {
-  //       next(error);
-  //     }
-  //   }
-
-  //   async create(req, res, next) {
-  //     try {
-  //       // NOTE NEVER TRUST THE CLIENT TO ADD THE CREATOR ID
-  //       req.body.creatorId = req.user.sub;
-  //       let recipe = await recipeService.create(req.body);
-  //       return res.send(recipe);
-  //     } catch (error) {
-  //       next(error);
-  //     }
-  //   }
-
-  //   async update(req, res, next) {
-  //     try {
-  //       let updatedRecipe = await recipeService.update(req.params.id, req.body);
-  //       return res.send(updatedRecipe);
-  //     } catch (error) {
-  //       next(error);
-  //     }
-  //   }
-
-  //   async delete(req, res, next) {
-  //     try {
-  //       await recipeService.delete(req.params.id);
-  //       return res.send("Recipe deleted!");
-  //     } catch (error) {
-  //       next(error);
-  //     }
-  //   }
 }

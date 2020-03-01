@@ -15,6 +15,7 @@ export class RecipesController extends BaseController {
       // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
       .use(auth0Provider.isAuthorized)
       .post("", this.create)
+      // TODO Need to make Roles in Auth0 so only the user who created can edit or delete.
       .put("/:id", this.update)
       .delete("/:id", this.delete);
   }
