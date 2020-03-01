@@ -2,6 +2,7 @@ import express from "express";
 import BaseController from "../utils/BaseController";
 import auth0Provider from "@bcwdev/auth0Provider";
 import { recipeService } from "../services/RecipeService";
+import { commentService } from "../services/CommentService";
 
 export class RecipesController extends BaseController {
   constructor() {
@@ -10,6 +11,7 @@ export class RecipesController extends BaseController {
       .Router()
       .get("", this.getAll)
       .get("/:id", this.getById)
+      .get("/:id/comments", this.getCommentsByRecipeId)
       // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
       .use(auth0Provider.isAuthorized)
       .post("", this.create)
@@ -30,6 +32,15 @@ export class RecipesController extends BaseController {
     try {
       let recipe = await recipeService.getById(req.params.id);
       return res.send(recipe);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async getCommentsByRecipeId(req, res, next) {
+    try {
+      let comments = await commentService.getAllByRecipeId(req.params.id);
+      return res.send(comments);
     } catch (error) {
       next(error);
     }
