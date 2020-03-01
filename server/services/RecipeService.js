@@ -1,5 +1,5 @@
 import { dbContext } from "../db/DbContext";
-import { BadRequest } from "../utils/Errors";
+import { BadRequest, NotFound } from "../utils/Errors";
 
 class RecipeService {
   // NOTE Not gettiing all recipes...
@@ -14,7 +14,7 @@ class RecipeService {
     }
     // @ts-ignore
     if (recipe.isDeleted) {
-      throw new BadRequest("This recipe has been deleted.");
+      throw new NotFound("This recipe has been deleted.");
     }
 
     return recipe;
