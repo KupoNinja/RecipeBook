@@ -10,8 +10,8 @@ export class RecipesController extends BaseController {
       .Router()
       .get("", this.getAll)
       // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
-      .post("", this.create)
-      .use(auth0Provider.isAuthorized);
+      .use(auth0Provider.isAuthorized)
+      .post("", this.create);
   }
   async getAll(req, res, next) {
     try {
