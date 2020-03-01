@@ -9,10 +9,13 @@ export class RecipesController extends BaseController {
     this.router = express
       .Router()
       .get("", this.getAll)
+      .get("/:id", this.getById)
       // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
       .use(auth0Provider.isAuthorized)
-      .post("", this.create);
+      .post("", this.create)
+      .put("/:id", this.update);
   }
+
   async getAll(req, res, next) {
     try {
       let recipes = await recipeService.getAll(req.query);
@@ -21,12 +24,31 @@ export class RecipesController extends BaseController {
       next(error);
     }
   }
+
+  async getById(req, res, next) {
+    try {
+      let recipe = await recipeService.getById(req.params.id);
+      return res.send(recipe);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async create(req, res, next) {
     try {
       // NOTE NEVER TRUST THE CLIENT TO ADD THE CREATOR ID
       req.body.creatorId = req.user.sub;
       let recipe = await recipeService.create(req.body);
       return res.send(recipe);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async update(req, res, next) {
+    try {
+      let updatedRecipe = await recipeService.update(req.params.id, req.body);
+      return res.send(updatedRecipe);
     } catch (error) {
       next(error);
     }
