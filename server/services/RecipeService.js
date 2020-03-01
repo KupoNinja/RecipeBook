@@ -2,8 +2,9 @@ import { dbContext } from "../db/DbContext";
 import { BadRequest } from "../utils/Errors";
 
 class RecipeService {
+  // NOTE Not gettiing all recipes...
   async getAll(query = {}) {
-    return await dbContext.Recipe.find({ ...query, deleted: false });
+    return await dbContext.Recipe.find({ ...query, isDeleted: false });
   }
 
   async getById(id) {
@@ -11,6 +12,11 @@ class RecipeService {
     if (!recipe) {
       throw new BadRequest("Invalid Id");
     }
+    // @ts-ignore
+    if (recipe.isDeleted) {
+      throw new BadRequest("This recipe has been deleted.");
+    }
+
     return recipe;
   }
 
@@ -21,7 +27,7 @@ class RecipeService {
   async update(recipeId, recipeData) {
     let recipeToUpdate = await this.getById(recipeId);
     // @ts-ignore
-    recipeData.createdBy = recipeToUpdate.createdBy;
+    recipeData.creatorId = recipeToUpdate.creatorId;
     // NOTE Does $isDeleted work?
     // @ts-ignore
     if (recipeToUpdate.isDeleted) {
@@ -31,6 +37,13 @@ class RecipeService {
     return await dbContext.Recipe.findByIdAndUpdate(recipeId, recipeData, {
       new: true
     });
+  }
+
+  async delete(recipeId) {
+    let recipeToDelete = await dbContext.Recipe.findById(recipeId);
+    // @ts-ignore
+    recipeToDelete.isDeleted = true;
+    await recipeToDelete.save();
   }
 }
 

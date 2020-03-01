@@ -13,7 +13,8 @@ export class RecipesController extends BaseController {
       // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
       .use(auth0Provider.isAuthorized)
       .post("", this.create)
-      .put("/:id", this.update);
+      .put("/:id", this.update)
+      .delete("/:id", this.delete);
   }
 
   async getAll(req, res, next) {
@@ -49,6 +50,15 @@ export class RecipesController extends BaseController {
     try {
       let updatedRecipe = await recipeService.update(req.params.id, req.body);
       return res.send(updatedRecipe);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async delete(req, res, next) {
+    try {
+      await recipeService.delete(req.params.id);
+      return res.send("Recipe deleted!");
     } catch (error) {
       next(error);
     }
