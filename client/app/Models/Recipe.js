@@ -3,7 +3,7 @@ export default class Recipe {
     this.id = data.id;
     this.creatorId = data.creatorId;
     this.title = data.title;
-    this.imgUrl = data.imgUrl;
+    this.imgUrl = data.imgUrl || "http://placehold.it/200x200";
     this.ingredients = data.ingredients;
     this.directions = data.directions;
     this.likes = data.likes;
@@ -17,7 +17,7 @@ export default class Recipe {
      <div class="col-12 col-md-4 col-lg-3">
         <div class="card">
             <div class="card-title">${this.title}</div>
-            <img src="${this.imgUrl}" class="card-img-top" alt="a recipe image">
+            <img src="${this.imgUrl}" onerror="this.src='http://placehold.it/200x200'" class="card-img-top" alt="a recipe image">
             <div class="card-body">
                 <div class="card-subtitle">Ingredients: ${this.ingredients}</div>
                 <p class="card-text">Directions: ${this.directions}</p>

@@ -41,9 +41,9 @@ export default class RecipesController {
     store.subscribe("recipes", _drawRecipes);
   }
 
-  showRecipesForm() {
-    _drawRecipeForm();
-  }
+  //   showRecipesForm() {
+  //     _drawRecipeForm();
+  //   }
 
   async getRecipes() {
     try {
