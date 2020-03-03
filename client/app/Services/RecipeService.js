@@ -9,8 +9,11 @@ class RecipeService {
     store.commit("recipes", recipes);
   }
 
-  async createRecipe() {
-    resource.post("api/recipes");
+  async createRecipe(recipeData) {
+    let data = await resource.post(recipeData);
+    let newRecipe = new Recipe(data);
+    store.State.recipes.push(newRecipe);
+    store.commit("recipes", store.State.recipes);
   }
 }
 
