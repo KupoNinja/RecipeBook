@@ -100,6 +100,16 @@ export default class RecipesController {
     form.directions.value = recipe.directions;
   }
 
+  async deleteRecipe(recipeId) {
+    try {
+      let success = await recipeService.deleteRecipe(recipeId);
+      // NOTE success is undefined...
+      console.log(success);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   // async updateRecipe() {
   //   try {
   //     await recipeService.updateCar();

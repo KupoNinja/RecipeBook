@@ -10,13 +10,19 @@ class RecipeService {
   }
 
   async createRecipe(recipeData) {
+    let ingredients = this.parseIngredients(recipeData.ingredients);
+    recipeData.ingredients = ingredients;
     let data = await resource.post("api/recipes", recipeData);
     let newRecipe = new Recipe(data);
     store.State.recipes.push(newRecipe);
     store.commit("recipes", store.State.recipes);
   }
 
+  // NOTE Repeating code...
   async updateRecipe(recipeData) {
+    debugger;
+    let ingredients = this.parseIngredients(recipeData.ingredients);
+    recipeData.ingredients = ingredients;
     let data = await resource.put("api/recipes/" + recipeData.id, recipeData);
     let updatedRecipe = new Recipe(data);
     let i = store.State.recipes.findIndex(r => r.id == updatedRecipe.id);
@@ -26,10 +32,25 @@ class RecipeService {
     }
   }
 
+  async deleteRecipe(recipeId) {
+    let message = await resource.delete("api/recipes/" + recipeId);
+    let i = store.State.recipes.findIndex(r => r.id == recipeId);
+    if (i != -1) {
+      store.State.recipes.splice(i, 1);
+      store.commit("recipes", store.State.recipes);
+    }
+    return message;
+  }
+
   async addALike(recipeId) {
     let recipe = store.State.recipes.find(r => r.id == recipeId);
     recipe.likes++;
     await this.updateRecipe(recipe);
+  }
+
+  parseIngredients(ingredients) {
+    let ingredientArray = ingredients.split(",");
+    return ingredientArray;
   }
 }
 
