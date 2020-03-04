@@ -41,9 +41,9 @@ export default class RecipesController {
     store.subscribe("recipes", _drawRecipes);
   }
 
-  //   showRecipesForm() {
-  //     _drawRecipeForm();
-  //   }
+  showRecipesForm() {
+    _drawRecipeForm();
+  }
 
   async getRecipes() {
     try {
@@ -70,6 +70,14 @@ export default class RecipesController {
       });
       // @ts-ignore
       form.reset();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async addALike(recipeId) {
+    try {
+      await recipeService.addALike(recipeId);
     } catch (error) {
       console.log(error);
     }

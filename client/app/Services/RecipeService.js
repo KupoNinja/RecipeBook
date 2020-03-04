@@ -15,6 +15,13 @@ class RecipeService {
     store.State.recipes.push(newRecipe);
     store.commit("recipes", store.State.recipes);
   }
+
+  async addALike(recipeId) {
+    let recipe = store.State.recipes.find(r => r.id == recipeId);
+    recipe.likes++;
+    // NOTE Use update method.
+    // let data = await resource.put("api/recipes/" + recipeId, recipe);
+  }
 }
 
 export const recipeService = new RecipeService();

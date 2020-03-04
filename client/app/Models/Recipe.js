@@ -21,7 +21,8 @@ export default class Recipe {
             <div class="card-body">
                 <div class="card-subtitle">Ingredients: ${this.ingredients}</div>
                 <p class="card-text">Directions: ${this.directions}</p>
-                <div>Likes: ${this.likes}</div>
+                <button type="button" class="btn btn-primary" onclick="app.recipesController.addALike('${this.id}')"><i class="fas fa-cookie-bite"></i></button>
+                <p>${this.likes}</p>
             </div>
             <button class="btn btn-info" onclick="app.recipesController.editRecipe('${this.id}')">Edit</button>
             <button class="btn btn-danger" onclick="app.recipesController.deleteRecipe('${this.id}')">Delete</button>
