@@ -16,7 +16,7 @@ function _drawCommentForm() {
 }
 
 export default class CommentsController {
-    constructor() {
+  constructor() {
     // TODO Fix this...
     // store.subscribe("comments", _drawComments);
   }
@@ -28,3 +28,4 @@ export default class CommentsController {
       console.log(error);
     }
   }
+}
