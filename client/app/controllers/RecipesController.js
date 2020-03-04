@@ -27,7 +27,7 @@ function _drawRecipeForm() {
         </div>
         <div class="form-group">
           <label for="directions">Directions:</label>
-          <input name="directions" type="text" class="form-control" />
+          <textarea name="directions" class="form-control"></textarea>
         </div>
         <button type="submit">Submit</button>
       </form>
