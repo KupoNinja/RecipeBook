@@ -29,8 +29,7 @@ class RecipeService {
   async addALike(recipeId) {
     let recipe = store.State.recipes.find(r => r.id == recipeId);
     recipe.likes++;
-    // NOTE Use update method.
-    // let data = await resource.put("api/recipes/" + recipeId, recipe);
+    await this.updateRecipe(recipe);
   }
 }
 

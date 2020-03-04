@@ -108,6 +108,8 @@ export default class RecipesController {
   //   }
   // }
 
+  // NOTE Is there a better way of doing this?
+  //      Also, the whole recipe list draws. Utilize ActiveRecipe. Only allow likes/favorites with activeRecipe
   async addALike(recipeId) {
     try {
       await recipeService.addALike(recipeId);
