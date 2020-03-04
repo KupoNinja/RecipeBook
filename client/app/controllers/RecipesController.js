@@ -54,11 +54,10 @@ export default class RecipesController {
   }
 
   async createRecipe() {
-    debugger;
     event.preventDefault();
     let form = event.target;
     try {
-      recipeService.createRecipe({
+      let recipeData = {
         // @ts-ignore
         title: form.title.value,
         // @ts-ignore
@@ -67,7 +66,17 @@ export default class RecipesController {
         ingredients: form.ingredients.value,
         // @ts-ignore
         directions: form.directions.value
-      });
+      };
+
+      // @ts-ignore
+      let recipeId = form.id.value;
+      if (recipeId) {
+        recipeData.id = recipeId;
+        await recipeService.updateRecipe(recipeData);
+        console.log(store.State.recipes);
+      } else {
+        await recipeService.createRecipe(recipeData);
+      }
       // @ts-ignore
       form.reset();
     } catch (error) {
@@ -93,7 +102,7 @@ export default class RecipesController {
 
   // async updateRecipe() {
   //   try {
-
+  //     await recipeService.updateCar();
   //   } catch (error) {
   //     console.log(error);
   //   }
