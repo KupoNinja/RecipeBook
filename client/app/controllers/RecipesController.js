@@ -75,6 +75,30 @@ export default class RecipesController {
     }
   }
 
+  async editRecipe(recipeId) {
+    _drawRecipeForm();
+    let recipe = store.State.recipes.find(r => r.id == recipeId);
+    let form = document.getElementById("recipe-form");
+    // @ts-ignore
+    form.id.value = recipe.id;
+    // @ts-ignore
+    form.title.value = recipe.title;
+    // @ts-ignore
+    form.imgUrl.value = recipe.imgUrl;
+    // @ts-ignore
+    form.ingredients.value = recipe.ingredients;
+    // @ts-ignore
+    form.directions.value = recipe.directions;
+  }
+
+  // async updateRecipe() {
+  //   try {
+
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
+
   async addALike(recipeId) {
     try {
       await recipeService.addALike(recipeId);
