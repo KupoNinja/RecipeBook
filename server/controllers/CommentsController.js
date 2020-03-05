@@ -10,8 +10,18 @@ export class CommentsController extends BaseController {
     this.router = express
       .Router()
       .use(auth0Provider.isAuthorized)
+      .get("", this.getComments)
       .post("", this.create);
     // TODO Need to make Roles in Auth0 so only the user who created can edit or delete.
+  }
+
+  async getComments(req, res, next) {
+    try {
+      let comments = await commentService.getAllByRecipeId(req.query.recipeId);
+      res.send(comments);
+    } catch (error) {
+      next(error);
+    }
   }
 
   async create(req, res, next) {

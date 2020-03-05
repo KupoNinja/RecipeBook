@@ -1,7 +1,6 @@
 import store from "../store.js";
 import { commentService } from "../Services/CommentService.js";
 
-// TODO Draw this form in card?
 function _drawCommentForm(recipeId) {
   let template = /* html */ `
       <form id="comment-form" onsubmit="app.commentsController.createComment('${recipeId}')">
@@ -18,7 +17,9 @@ function _drawComments() {
   let comments = store.State.comments;
   let template = "";
   comments.forEach(c => (template += c.Template));
-  document.getElementById("comments").innerHTML = template;
+  // NOTE Need to make id unique... Multiple recipe cards have the same id="comments"
+  // Look at above example
+  document.getElementById(comments).innerHTML = template;
 }
 
 export default class CommentsController {

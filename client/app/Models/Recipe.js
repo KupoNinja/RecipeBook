@@ -29,7 +29,7 @@ export default class Recipe {
             </div>
             <button class="btn btn-info" onclick="app.recipesController.editRecipe('${this.id}')">Edit</button>
             <button class="btn btn-danger" onclick="app.recipesController.deleteRecipe('${this.id}')">Delete</button>
-            <div id="comments"></div>
+            <div id="comments-${this.id}"></div>
         </div>
      </div>
     `;
