@@ -9,7 +9,7 @@ function _drawRecipes() {
   document.getElementById("recipes").innerHTML = template;
 }
 
-function _drawRecipeForm() {
+function _drawRecipesForm() {
   let template = /* html */ `
       <form id="recipe-form" onsubmit="app.recipesController.createRecipe()">
         <input name="id" type="text" class="d-none" disabled />
@@ -32,7 +32,7 @@ function _drawRecipeForm() {
         <button type="submit">Submit</button>
       </form>
     `;
-  document.getElementById("form").innerHTML = template;
+  document.getElementById("recipes-form").innerHTML = template;
 }
 
 export default class RecipesController {
@@ -42,7 +42,7 @@ export default class RecipesController {
   }
 
   showRecipesForm() {
-    _drawRecipeForm();
+    _drawRecipesForm();
   }
 
   async getRecipes() {
@@ -85,7 +85,7 @@ export default class RecipesController {
   }
 
   async editRecipe(recipeId) {
-    _drawRecipeForm();
+    _drawRecipesForm();
     let recipe = store.State.recipes.find(r => r.id == recipeId);
     let form = document.getElementById("recipe-form");
     // @ts-ignore

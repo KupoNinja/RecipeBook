@@ -24,11 +24,12 @@ export default class Recipe {
                 <p class="card-text">Directions: ${this.directions}</p>
                 <button type="button" class="btn btn-primary" onclick="app.recipesController.addALike('${this.id}')"><i class="fas fa-cookie-bite"></i></button>
                 <p>${this.likes}</p>
-                <button class="btn btn-primary" onclick="app.commentsController.createComment('${this.id}')">Comment</button>
-                <div id="comment-box"></div>
+                <button class="btn btn-primary" onclick="app.commentsController.showCommentForm('${this.id}')">Comment</button>
+                <div id="comments-form-${this.id}"></div>
             </div>
             <button class="btn btn-info" onclick="app.recipesController.editRecipe('${this.id}')">Edit</button>
             <button class="btn btn-danger" onclick="app.recipesController.deleteRecipe('${this.id}')">Delete</button>
+            <div id="comments"></div>
         </div>
      </div>
     `;

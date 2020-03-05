@@ -20,7 +20,6 @@ class RecipeService {
 
   // NOTE Repeating code...
   async updateRecipe(recipeData) {
-    debugger;
     let ingredients = this.parseIngredients(recipeData.ingredients);
     recipeData.ingredients = ingredients;
     let data = await resource.put("api/recipes/" + recipeData.id, recipeData);
@@ -49,6 +48,10 @@ class RecipeService {
   }
 
   parseIngredients(ingredients) {
+    if (Array.isArray(ingredients)) {
+      return ingredients;
+    }
+
     let ingredientArray = ingredients.split(",");
     return ingredientArray;
   }
