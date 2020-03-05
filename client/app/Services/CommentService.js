@@ -1,14 +1,14 @@
-import { resource } from "../resource";
-import store from "../store";
+import { resource } from "../resource.js";
+import store from "../store.js";
+import Comment from "../Models/Comment.js";
 
 class CommentService {
-  // TODO Need to take in data... Not just the recipeId
+  debugger;
   async createComment(commentData) {
-    let data = resource.post("api/comments", commentData);
+    let data = await resource.post("api/comments", commentData);
     let newComment = new Comment(data);
-    store.State.recipes.push(newComment);
-    // TODO Need to do comments in store
-    //   store.commit("comments", comments)
+    store.State.comments.push(newComment);
+    store.commit("comments", store.State.comments);
   }
 }
 

@@ -14,12 +14,16 @@ function _drawCommentForm(recipeId) {
   document.getElementById(`comments-form-${recipeId}`).innerHTML = template;
 }
 
-function _drawComments() {}
+function _drawComments() {
+  let comments = store.State.comments;
+  let template = "";
+  comments.forEach(c => (template += c.Template));
+  document.getElementById("comments").innerHTML = template;
+}
 
 export default class CommentsController {
   constructor() {
-    // TODO Fix this...
-    // store.subscribe("comments", _drawComments);
+    store.subscribe("comments", _drawComments);
   }
 
   showCommentForm(recipeId) {
@@ -36,6 +40,7 @@ export default class CommentsController {
         content: form.content.value
       };
       await commentService.createComment(commentData);
+      _drawComments();
     } catch (error) {
       console.log(error);
     }

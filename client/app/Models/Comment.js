@@ -1,4 +1,4 @@
-export class Comment {
+export default class Comment {
   constructor(data) {
     this.id = data.id;
     this.recipeId = data.recipeId;
