@@ -17,9 +17,9 @@ function _drawComments() {
   let comments = store.State.comments;
   let template = "";
   comments.forEach(c => (template += c.Template));
-  // NOTE Need to make id unique... Multiple recipe cards have the same id="comments"
+  // TODO  Need to make id unique... Multiple recipe cards have the same id="comments"
   // Look at above example
-  document.getElementById(comments).innerHTML = template;
+  document.getElementById(`comments-`).innerHTML = template;
 }
 
 export default class CommentsController {

@@ -9,18 +9,18 @@ function _drawRecipes() {
   document.getElementById("recipes").innerHTML = template;
 }
 
-function _drawCreaterInfo() {
-  let user = Auth0Provider.user;
+// function _drawCreaterInfo() {
+//   let user = Auth0Provider.user;
 
-  let template = /* html */ `
-    <div>
-      <p>Created By:</p>
-      <img class="rounded-circle" src="${user.picture}" alt="${user.name}" height="45"/>
-      <span class="ml-2">${user.name}</span>
-    </div>
-  `;
-  document.getElementById("created-by").innerHTML = template;
-}
+//   let template = /* html */ `
+//     <div>
+//       <p>Created By:</p>
+//       <img class="rounded-circle" src="${user.picture}" alt="${user.name}" height="45"/>
+//       <span class="ml-2">${user.name}</span>
+//     </div>
+//   `;
+//   document.getElementById("created-by").innerHTML = template;
+// }
 
 // function _drawViewMyRecipes() {
 //   let user = Auth0Provider.user;
@@ -38,7 +38,7 @@ function _drawRecipesForm() {
         <input name="id" type="text" class="d-none" disabled />
         <div class="form-group">
           <label for="title">Title:</label>
-          <input name="title" type="text" class="form-control" />
+          <input id="recipe-start" name="title" type="text" class="form-control" />
         </div>
         <div class="form-group">
           <label for="imgUrl">ImgUrl:</label>
@@ -56,6 +56,7 @@ function _drawRecipesForm() {
       </form>
     `;
   document.getElementById("recipes-form").innerHTML = template;
+  document.getElementById("recipe-start").focus();
 }
 
 // function avatarTemplate(user) {
@@ -83,12 +84,20 @@ function _drawRecipesForm() {
 export default class RecipesController {
   constructor() {
     this.getRecipes();
-    Auth0Provider.onAuth(_drawCreaterInfo);
     store.subscribe("recipes", _drawRecipes);
   }
 
   showRecipesForm() {
     _drawRecipesForm();
+  }
+
+  setActiveRecipe(recipeId) {
+    try {
+      recipeService.setActiveRecipe(recipeId);
+      console.log(store.State.activeRecipe);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async getRecipes() {

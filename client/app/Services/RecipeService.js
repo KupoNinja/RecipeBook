@@ -3,6 +3,11 @@ import Recipe from "../Models/Recipe.js";
 import { resource } from "../resource.js";
 
 class RecipeService {
+  setActiveRecipe(recipeId) {
+    debugger;
+    let activeRecipe = store.State.Recipe.find(r => r.id == recipeId);
+    store.commit("activeRecipe", activeRecipe);
+  }
   async getRecipes() {
     let data = await resource.get("api/recipes");
     let recipes = data.map(r => new Recipe(r));

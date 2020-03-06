@@ -22,6 +22,26 @@ export default class Recipe {
           <div class="card-title">${this.title}</div>
           <img src="${this.imgUrl}" onerror="this.src='http://placehold.it/200x200'" class="card-img-top" alt="a recipe image">
           <div class="card-body">
+            <div class="row m-2">
+              <p class="mr-2">Created By:</p>
+              <img class="rounded-circle" src="${this.creatorImg}" alt="${this.creatorName}" height="45"/>
+              <span class="ml-2">${this.creatorName}</span>
+            </div>
+            <button class="btn btn-primary" onclick="app.recipesController.setActiveRecipe('${this.id}')">View Recipe</button>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // TODO Only allow users to edit or delete if they're the creator and if the template is the activeRecipe
+  get ActiveTemplate() {
+    return /* html */ `
+      <div class="col-12 col-md-4 col-lg-3">
+        <div class="card text-dark">
+          <div class="card-title">${this.title}</div>
+          <img src="${this.imgUrl}" onerror="this.src='http://placehold.it/200x200'" class="card-img-top" alt="a recipe image">
+          <div class="card-body">
             <div class="card-subtitle">Ingredients: ${this.ingredients}</div>
             <p class="card-text">Directions: ${this.directions}</p>
             <button type="button" class="btn btn-primary" onclick="app.recipesController.addALike('${this.id}')"><i class="fas fa-cookie-bite"></i></button>
