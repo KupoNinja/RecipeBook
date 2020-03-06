@@ -2,6 +2,7 @@ export default class Recipe {
   constructor(data) {
     this.id = data.id;
     this.creatorId = data.creatorId;
+    // NOTE Putting creatorImg and creatorName breaks if the user ever changes...
     this.creatorImg = data.creatorImg;
     this.creatorName = data.creatorName;
     this.title = data.title;

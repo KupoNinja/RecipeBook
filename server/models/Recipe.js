@@ -9,6 +9,7 @@ const Recipe = new Schema(
     directions: { type: String, maxlength: 2000, trim: true, required: true },
     imgUrl: { type: String },
     creatorId: { type: String, required: true },
+    // NOTE Putting creatorImg and creatorName breaks if the user ever changes...
     creatorImg: {
       type: String,
       default:
