@@ -26,8 +26,10 @@ export default class Recipe {
             <button type="button" class="btn btn-primary" onclick="app.recipesController.addALike('${this.id}')"><i class="fas fa-cookie-bite"></i></button>
             <p>${this.likes}</p>
             <div id="favorite"></div>
-            <div class="row">
-              <div id="${this.id}-created-by" class="card-subtitle"></div>
+            <div class="row m-2">
+              <p class="mr-2">Created By:</p>
+              <img class="rounded-circle" src="${this.creatorImg}" alt="${this.creatorName}" height="45"/>
+              <span class="ml-2">${this.creatorName}</span>
             </div>
             <button class="btn btn-primary" onclick="app.commentsController.showCommentForm('${this.id}')">Comment</button>
             <div id="comments-form-${this.id}"></div>
