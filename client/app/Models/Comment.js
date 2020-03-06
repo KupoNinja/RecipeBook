@@ -22,7 +22,7 @@ export default class Comment {
       <div class="col-sm-5">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <strong>${userAvatar}</strong> <span class="text-muted">commented 5 days ago</span>
+                <strong></strong> <span class="text-muted">commented 5 days ago</span>
             </div>
             <div class="panel-body">
             ${this.content};

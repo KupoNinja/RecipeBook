@@ -13,7 +13,7 @@ export class RecipesController extends BaseController {
       .get("/:id", this.getById)
       .get("/:id/comments", this.getCommentsByRecipeId)
       // NOTE: Beyond this point all routes require Authorization tokens (the user must be logged in)
-      .use(auth0Provider.isAuthorized)
+      .use(auth0Provider.getAuthorizedUserInfo)
       .post("", this.create)
       // TODO Need to make Roles in Auth0 so only the user who created can edit or delete.
       .put("/:id", this.update)
@@ -51,6 +51,8 @@ export class RecipesController extends BaseController {
     try {
       // NOTE NEVER TRUST THE CLIENT TO ADD THE CREATOR ID
       req.body.creatorId = req.user.sub;
+      req.body.creatorName = req.userInfo.name;
+      req.body.creatorImg = req.userInfo.picture;
       let recipe = await recipeService.create(req.body);
       return res.send(recipe);
     } catch (error) {

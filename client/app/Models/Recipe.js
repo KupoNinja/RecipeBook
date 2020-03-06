@@ -2,6 +2,8 @@ export default class Recipe {
   constructor(data) {
     this.id = data.id;
     this.creatorId = data.creatorId;
+    this.creatorImg = data.creatorImg;
+    this.creatorName = data.creatorName;
     this.title = data.title;
     this.imgUrl = data.imgUrl || "http://placehold.it/200x200";
     this.ingredients = data.ingredients;
