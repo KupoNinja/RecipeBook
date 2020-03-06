@@ -9,6 +9,29 @@ function _drawRecipes() {
   document.getElementById("recipes").innerHTML = template;
 }
 
+function _drawCreaterInfo() {
+  let user = Auth0Provider.user;
+
+  let template = /* html */ `
+    <div>
+      <p>Created By:</p>
+      <img class="rounded-circle" src="${user.picture}" alt="${user.name}" height="45"/>
+      <span class="ml-2">${user.name}</span>
+    </div>
+  `;
+  document.getElementById("created-by").innerHTML = template;
+}
+
+// function _drawViewMyRecipes() {
+//   let user = Auth0Provider.user;
+//   let userAvatar = avatarTemplate(user);
+//   let button = showRecipesButton(user);
+
+//   let template = /* html */ `
+//     <button class="btn-primary" onclick="app.recipesController.showMyRecipes()">View My Recipes</button>
+//   `;
+// }
+
 function _drawRecipesForm() {
   let template = /* html */ `
       <form id="recipe-form" onsubmit="app.recipesController.createRecipe()">
@@ -35,9 +58,32 @@ function _drawRecipesForm() {
   document.getElementById("recipes-form").innerHTML = template;
 }
 
+// function avatarTemplate(user) {
+//   return user.sub
+//     ? /*html*/ `
+//     <div>
+//       <img class="rounded-circle" src="${user.picture}" alt="${user.name}" height="45"/>
+//       <span class="ml-2">${user.name}</span>
+//     </div>`
+//     : /*html*/ `
+//     <div></div>
+//     `;
+// }
+
+// function showRecipesButton(user) {
+//     return user.sub
+//       ? /*html*/ `
+//     <button class="btn btn-danger" onclick="app.recipesController.getRecipes(user.id)">View My Recipes</button>
+//   `
+//       : /*html*/ `
+//     <button class="btn btn-info" onclick="app.recipesController.getRecipes()">Show My Recipes</button>
+//   `;
+//   }
+
 export default class RecipesController {
   constructor() {
     this.getRecipes();
+    Auth0Provider.onAuth(_drawCreaterInfo);
     store.subscribe("recipes", _drawRecipes);
   }
 

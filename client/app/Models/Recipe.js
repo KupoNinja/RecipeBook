@@ -21,11 +21,11 @@ export default class Recipe {
           <div class="card-body">
             <div class="card-subtitle">Ingredients: ${this.ingredients}</div>
             <p class="card-text">Directions: ${this.directions}</p>
-            <button type="button" class="btn btn-primary" onclick="app.recipesController.addALike('${this.id}')"><i class="fas fa-cookie-bite"></i></>
+            <button type="button" class="btn btn-primary" onclick="app.recipesController.addALike('${this.id}')"><i class="fas fa-cookie-bite"></i></button>
             <p>${this.likes}</p>
+            <div id="favorite"></div>
             <div class="row">
-              <img src="">
-              <div class="card-subtitle">Created by: </div>
+              <div id="${this.id}-created-by" class="card-subtitle"></div>
             </div>
             <button class="btn btn-primary" onclick="app.commentsController.showCommentForm('${this.id}')">Comment</button>
             <div id="comments-form-${this.id}"></div>
