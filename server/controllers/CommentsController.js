@@ -9,7 +9,7 @@ export class CommentsController extends BaseController {
     super("api/comments");
     this.router = express
       .Router()
-      .use(auth0Provider.isAuthorized)
+      .use(auth0Provider.getAuthorizedUserInfo)
       .get("", this.getComments)
       .post("", this.create);
     // TODO Need to make Roles in Auth0 so only the user who created can edit or delete.
