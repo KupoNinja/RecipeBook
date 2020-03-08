@@ -11,13 +11,13 @@ export class FavoritesController extends BaseController {
       .Router()
       .use(auth0Provider.isAuthorized)
       .get("", this.getFavorites)
-      .post("", this.create);
+      .post("", this.create)
+      .delete("/:id", this.delete);
     // TODO Need to make Roles in Auth0 so only the user who created can edit or delete.
   }
 
   async getFavorites(req, res, next) {
     try {
-      // TODO Get userid...
       let favorites = await favoriteService.getAllByUserId(req.user.sub);
       res.send(favorites);
     } catch (error) {
@@ -27,8 +27,17 @@ export class FavoritesController extends BaseController {
 
   async create(req, res, next) {
     try {
-      req.body.creatorId = req.user.sub;
-      return res.send(await favoriteService.create(req.body));
+      req.body.userId = req.user.sub;
+      res.send(await favoriteService.create(req.body));
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async delete(req, res, next) {
+    try {
+      await favoriteService.delete(req.params.id);
+      res.send("Favorite removed!");
     } catch (error) {
       next(error);
     }

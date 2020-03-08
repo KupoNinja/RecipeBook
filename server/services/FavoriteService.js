@@ -11,8 +11,15 @@ class FavoriteService {
   }
 
   async create(favoriteData) {
-    //   if ()
+    if (!favoriteData) {
+      throw new BadRequest("Unable to favorite.");
+    }
+
     return await dbContext.RecipeFavorite.create(favoriteData);
+  }
+
+  async delete(favoriteId) {
+    return await dbContext.RecipeFavorite.findByIdAndDelete(favoriteId);
   }
 }
 
