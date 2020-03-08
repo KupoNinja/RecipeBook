@@ -22,7 +22,13 @@ function _drawRecipes() {
 //   document.getElementById("created-by").innerHTML = template;
 // }
 
-function _drawViewMyRecipes() {}
+function _drawViewMyRecipes() {
+  let user = Auth0Provider.user;
+  let myRecipes = store.State.recipes.filter(r => r.creatorId == user.sub);
+  let template = "";
+  myRecipes.forEach(r => (template += r.Template));
+  document.getElementById("recipes").innerHTML = template;
+}
 
 function _drawRecipesForm() {
   let template = /* html */ `
@@ -63,20 +69,14 @@ function _drawRecipesForm() {
 //     `;
 // }
 
-// function showRecipesButton(user) {
-//     return user.sub
-//       ? /*html*/ `
-//     <button class="btn btn-danger" onclick="app.recipesController.getRecipes(user.id)">View My Recipes</button>
-//   `
-//       : /*html*/ `
-//     <button class="btn btn-info" onclick="app.recipesController.getRecipes()">Show My Recipes</button>
-//   `;
-//   }
-
 export default class RecipesController {
   constructor() {
     this.getRecipes();
     store.subscribe("recipes", _drawRecipes);
+  }
+
+  viewMyRecipes() {
+    _drawViewMyRecipes();
   }
 
   showRecipesForm() {

@@ -24,8 +24,23 @@
   </head>
   <body class="container-fluid bg-primary text-light">
     <header>
-      <nav></nav>
-      <div id="authbar"></div>
+      <nav
+        class="navbar navbar-expand-lg navbar-dark bg-primary border-bottom rounded"
+      >
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <button
+                class="btn btn-info"
+                onclick="app.recipesController.viewMyRecipes()"
+              >
+                View My Recipes
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div id="authbar"></div>
+      </nav>
     </header>
     <main>
       <h1>Hello, Recipebook!</h1>

@@ -1,6 +1,7 @@
 import { Auth0Provider } from "../auth/Auth0Provider.js";
 import { favoriteService } from "../Services/FavoriteService.js";
 
+// NOTE Same issue as before... targeting multiple id's
 function drawFavoritesButton() {
   let template = /* html */ `
     <button type="button" class="btn btn-primary" onclick="app.favoritesController.addAFavorite()">
