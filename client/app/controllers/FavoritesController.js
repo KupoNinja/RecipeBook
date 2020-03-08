@@ -21,11 +21,6 @@ export default class FavoritesController {
     Auth0Provider.onAuth(drawFavoritesButton);
   }
 
-  showFavoritesButton() {
-    debugger;
-    drawFavoritesButton();
-  }
-
   async getFavorites() {
     try {
       await favoriteService.getFavorites();
