@@ -133,11 +133,20 @@ export default class RecipesController {
 
   async editRecipe(recipeId) {
     try {
-      let user = Auth0Provider.user;
-      let recipe = store.State.recipes.find(r => r.id == recipeId);
-      if (recipe.creatorId != user.sub) {
-        return;
-      }
+      // NOTE This "works" but you can still submit w/ form and it'll edit.
+      // let user = Auth0Provider.user;
+      // let recipe = store.State.recipes.find(r => r.id == recipeId);
+      // if (recipe.creatorId != user.sub) {
+      //   Swal.fire({
+      //     title: "You're not allowed to edit this recipe.",
+      //     showClass: {
+      //       popup: "animated fadeInDown faster"
+      //     },
+      //     hideClass: {
+      //       popup: "animated fadeOutUp faster"
+      //     }
+      //   });
+      // }
       _drawRecipesForm();
       let form = document.getElementById("recipe-form");
       // @ts-ignore
