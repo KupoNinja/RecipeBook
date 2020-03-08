@@ -17,7 +17,7 @@ export default class Recipe {
   // TODO Need to bring in user info.
   get Template() {
     return /* html */ `
-      <div class="col-12 col-md-4 col-lg-3">
+      <div class="col-12 col-md-4 col-lg-3 m-2">
         <div class="card text-dark">
           <div class="card-title">${this.title}</div>
           <img src="${this.imgUrl}" onerror="this.src='http://placehold.it/200x200'" class="card-img-top" alt="a recipe image">

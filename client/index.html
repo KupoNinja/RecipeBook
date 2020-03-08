@@ -29,9 +29,19 @@
     </header>
     <main>
       <h1>Hello, Recipebook!</h1>
-      <button onclick="app.recipesController.showRecipesForm()">
+      <button
+        class="btn btn-info"
+        onclick="app.recipesController.showRecipesForm()"
+      >
         Add a Recipe
       </button>
+      <button
+        class="btn btn-info"
+        onclick="app.favoritesController.showFavoritesButton()"
+      >
+        Show Fave Button
+      </button>
+
       <div id="recipes-form"></div>
       <div id="recipes" class="row"></div>
     </main>

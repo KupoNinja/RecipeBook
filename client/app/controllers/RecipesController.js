@@ -22,15 +22,7 @@ function _drawRecipes() {
 //   document.getElementById("created-by").innerHTML = template;
 // }
 
-// function _drawViewMyRecipes() {
-//   let user = Auth0Provider.user;
-//   let userAvatar = avatarTemplate(user);
-//   let button = showRecipesButton(user);
-
-//   let template = /* html */ `
-//     <button class="btn-primary" onclick="app.recipesController.showMyRecipes()">View My Recipes</button>
-//   `;
-// }
+function _drawViewMyRecipes() {}
 
 function _drawRecipesForm() {
   let template = /* html */ `

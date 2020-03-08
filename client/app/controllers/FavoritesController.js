@@ -1,9 +1,9 @@
-import { Auth0Provider } from "../auth/Auth0Provider";
-import { favoriteService } from "../Services/FavoriteService";
+import { Auth0Provider } from "../auth/Auth0Provider.js";
+import { favoriteService } from "../Services/FavoriteService.js";
 
-function _drawFavoritesButton() {
+function drawFavoritesButton() {
   let template = /* html */ `
-    <button type="button" class="btn btn-primary" onclick="app.favoritesController.addAFavorite('${this.id}')">
+    <button type="button" class="btn btn-primary" onclick="app.favoritesController.addAFavorite()">
         <i class="fas fa-star"></i>
     </button>
     `;
@@ -17,7 +17,12 @@ function _drawFavoritesButton() {
 
 export default class FavoritesController {
   constructor() {
-    Auth0Provider.onAuth(this.getFavorites);
+    Auth0Provider.onAuth(drawFavoritesButton);
+  }
+
+  showFavoritesButton() {
+    debugger;
+    drawFavoritesButton();
   }
 
   async getFavorites() {

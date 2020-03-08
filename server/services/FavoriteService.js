@@ -1,5 +1,5 @@
-import { dbContext } from "../db/DbContext";
-import { BadRequest, NotFound } from "../utils/Errors";
+import { dbContext } from "../db/DbContext.js";
+import { BadRequest, NotFound } from "../utils/Errors.js";
 
 class FavoriteService {
   async getFavoritesByUserId(userId) {
