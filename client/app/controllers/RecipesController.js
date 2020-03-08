@@ -132,36 +132,37 @@ export default class RecipesController {
   }
 
   async editRecipe(recipeId) {
-    try {
-      // NOTE This "works" but you can still submit w/ form and it'll edit.
-      // let user = Auth0Provider.user;
-      // let recipe = store.State.recipes.find(r => r.id == recipeId);
-      // if (recipe.creatorId != user.sub) {
-      //   Swal.fire({
-      //     title: "You're not allowed to edit this recipe.",
-      //     showClass: {
-      //       popup: "animated fadeInDown faster"
-      //     },
-      //     hideClass: {
-      //       popup: "animated fadeOutUp faster"
-      //     }
-      //   });
-      // }
-      _drawRecipesForm();
-      let form = document.getElementById("recipe-form");
-      // @ts-ignore
-      form.id.value = recipe.id;
-      // @ts-ignore
-      form.title.value = recipe.title;
-      // @ts-ignore
-      form.imgUrl.value = recipe.imgUrl;
-      // @ts-ignore
-      form.ingredients.value = recipe.ingredients;
-      // @ts-ignore
-      form.directions.value = recipe.directions;
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   // NOTE This "works" but you can still submit w/ form and it'll edit.
+    //   // let user = Auth0Provider.user;
+    //   // let recipe = store.State.recipes.find(r => r.id == recipeId);
+    //   // if (recipe.creatorId != user.sub) {
+    //   //   Swal.fire({
+    //   //     title: "You're not allowed to edit this recipe.",
+    //   //     showClass: {
+    //   //       popup: "animated fadeInDown faster"
+    //   //     },
+    //   //     hideClass: {
+    //   //       popup: "animated fadeOutUp faster"
+    //   //     }
+    //   //   });
+    //   // }
+    // } catch (error) {
+    //   console.log(error);
+    // }
+    _drawRecipesForm();
+    let recipe = store.State.recipes.find(r => r.id == recipeId);
+    let form = document.getElementById("recipe-form");
+    // @ts-ignore
+    form.id.value = recipe.id;
+    // @ts-ignore
+    form.title.value = recipe.title;
+    // @ts-ignore
+    form.imgUrl.value = recipe.imgUrl;
+    // @ts-ignore
+    form.ingredients.value = recipe.ingredients;
+    // @ts-ignore
+    form.directions.value = recipe.directions;
   }
 
   async deleteRecipe(recipeId) {

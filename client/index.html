@@ -43,14 +43,83 @@
       </nav>
     </header>
     <main>
-      <h1>Hello, Recipebook!</h1>
+      <h1>Recipebook!</h1>
       <button
         class="btn btn-info"
         onclick="app.recipesController.showRecipesForm()"
       >
         Add a Recipe
       </button>
-
+      <button
+        type="button"
+        id="add-recipe-btn"
+        class="btn btn-info"
+        data-toggle="modal"
+        data-target="#recipe-form-modal"
+      >
+        Add a Recipe Modal
+      </button>
+      <div
+        class="modal fade"
+        id="recipe-form-modal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-dark">
+              <h5 class="modal-title" id="exampleModalLabel">New Recipe</h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body text-dark">
+              <form
+                id="recipe-form"
+                onsubmit="app.recipesController.createRecipe()"
+              >
+                <input name="id" type="text" class="d-none" disabled />
+                <div class="form-group">
+                  <label for="title">Title:</label>
+                  <input
+                    id="recipe-start"
+                    name="title"
+                    type="text"
+                    class="form-control"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="imgUrl">ImgUrl:</label>
+                  <input name="imgUrl" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="ingredients">Ingredients:</label>
+                  <input name="ingredients" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                  <label for="directions">Directions:</label>
+                  <textarea name="directions" class="form-control"></textarea>
+                </div>
+                <button class="btn btn-primary" type="submit">Submit</button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
       <div id="recipes-form"></div>
       <div id="recipes" class="row"></div>
     </main>
