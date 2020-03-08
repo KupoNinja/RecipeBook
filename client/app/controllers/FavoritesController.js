@@ -7,7 +7,7 @@ function _drawFavoritesButton() {
         <i class="fas fa-star"></i>
     </button>
     `;
-  document.getElementById("favorites").innerHTML = template;
+  document.getElementById("favorite").innerHTML = template;
 }
 
 // NOTE Get RecipeFavorite object from server.

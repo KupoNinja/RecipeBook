@@ -10,15 +10,15 @@ export class FavoritesController extends BaseController {
     this.router = express
       .Router()
       .use(auth0Provider.isAuthorized)
-      .get("", this.getFavorites)
+      .get("", this.getFavoritesByUserId)
       .post("", this.create)
       .delete("/:id", this.delete);
     // TODO Need to make Roles in Auth0 so only the user who created can edit or delete.
   }
 
-  async getFavorites(req, res, next) {
+  async getFavoritesByUserId(req, res, next) {
     try {
-      let favorites = await favoriteService.getAllByUserId(req.user.sub);
+      let favorites = await favoriteService.getFavoritesByUserId(req.user.sub);
       res.send(favorites);
     } catch (error) {
       next(error);

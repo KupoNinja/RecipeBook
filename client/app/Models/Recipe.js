@@ -22,12 +22,21 @@ export default class Recipe {
           <div class="card-title">${this.title}</div>
           <img src="${this.imgUrl}" onerror="this.src='http://placehold.it/200x200'" class="card-img-top" alt="a recipe image">
           <div class="card-body">
+            <div class="card-subtitle">Ingredients: ${this.ingredients}</div>
+            <p class="card-text">Directions: ${this.directions}</p>
+            <button type="button" class="btn btn-primary" onclick="app.recipesController.addALike('${this.id}')"><i class="fas fa-cookie-bite"></i></button>
+            <p>${this.likes}</p>
+            <div id="favorite"></div>
             <div class="row m-2">
               <p class="mr-2">Created By:</p>
               <img class="rounded-circle" src="${this.creatorImg}" alt="${this.creatorName}" height="45"/>
               <span class="ml-2">${this.creatorName}</span>
             </div>
-            <button class="btn btn-primary" onclick="app.recipesController.setActiveRecipe('${this.id}')">View Recipe</button>
+            <button class="btn btn-primary" onclick="app.commentsController.showCommentForm('${this.id}')">Comment</button>
+            <button class="btn btn-info" onclick="app.recipesController.editRecipe('${this.id}')">Edit</button>
+            <button class="btn btn-danger" onclick="app.recipesController.deleteRecipe('${this.id}')">Delete</button>
+            <div id="comments-form-${this.id}"></div>
+            <button class="btn btn-primary mt-2" onclick="app.recipesController.setActiveRecipe('${this.id}')">View Recipe</button>
           </div>
         </div>
       </div>

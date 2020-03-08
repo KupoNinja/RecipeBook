@@ -2,7 +2,7 @@ import { dbContext } from "../db/DbContext";
 import { BadRequest, NotFound } from "../utils/Errors";
 
 class FavoriteService {
-  async getAllByUserId(userId) {
+  async getFavoritesByUserId(userId) {
     if (!userId) {
       throw new BadRequest("Invalid User Id.");
     }
